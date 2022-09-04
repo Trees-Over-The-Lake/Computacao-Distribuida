@@ -1,0 +1,26 @@
+O problema dos dois generais é um problema muito conhecido. Esse problema consiste em dois generais
+que querem atacar um mesmo forte. Cada um dos generais está de um lado do forte sem conseguir se comunicar
+facilmente com o outro, sendo necessário enviar um mensageiro. Eles sabem que se atacarem separadamente irão perder. Com isso, eles precisam
+se organizar para atacar simultaneamente. Sabe-se, também, que enviar um mensageiro não garante que ele chegue do outro lado, pois pode ser
+atacado durante a travessia. Para garantir então que a mensagem foi um sucesso, pode-se adotar que um segundo mensageiro seja mandado do general
+que acabou de receber a mensagem para o primeiro.
+
+Esse problema não possui solução, no momento em que for enviado o segundo mensageiro para confirmar o recebimento da mensagem,
+pode acontecer do segundo mensageiro ser atacado na travessia e não avisar para o primeiro general. Com isso, o primeiro general não teria certeza
+se sua mensagem chegou corretamente e mais uma vez o ataque não funcionaria. Enviar mais mensageiros não soluciona o problema, pois quando o segundo
+mensageiro chegar no primeiro general, então seria necessário um terceiro mensageiro para confirmar sua chegado
+para o segundo general e assim por diante.
+
+Protocolos UDP não sofrem com esse problema, pois quando o pacote é enviado, não se pede confirmações. Então, se perdido não haverá
+confirmações enviadas por nenhuma das partes. Entretando, ao mudar o foco para o protocolo TCP, o problema aparece. Exigindo confirmações
+para abrir e fechar conexões pode acarretar no problema de confirmações infinitas. A solução adotado para o TCP é considerar que a conexão
+foi um sucesso, mesmo sem ter recebido a confirmação. Para considerar que falhou a conexão é colocado um tempo de \emph{timeout} para então
+reenviar uma tentativa de conexão.
+
+
+\vspace{1cm}
+\noindent Referências:
+
+\noindent Vídeo explicativo para ilustrar: \href{https://www.youtube.com/watch?v=IP-rGJKSZ3s}{The Two General's Problem - Tom Scott}
+
+\noindent Discução no Stackoverflow: \href{https://stackoverflow.com/questions/36352236/two-general-agreement-and-tcp-handshake}{Two general agreement and TCP handshake}
