@@ -1,0 +1,34 @@
+\section*{\emph{Checksums} e \emph{Snapshots} do BTRFS}
+
+O sistema de arquivos presente na \emph{kernel Linux} chamado BTRFS possui nativamente
+suporte para \emph{Checksums}. Esses permitem que o \emph{filesystem} ativamente corrija
+blocos de dados defeituosos e corrigi-los automaticamente.
+
+Caso algo saia do esperado é possível usar a ferramenta de \emph{snapshots} que esse \emph{filesystem}
+possui para voltar o backup do sistema e recuperar os dados perdidos. Esses \emph{snapshots} são
+feitos em nível de sistema, o que significa que caso algum arquivo até em nível de \emph{kernel} tenha sido
+modificado, poderá ser recuperado.
+
+\section*{\emph{fsck} do sistema de arquivos ext4}
+
+O comando \emph{fsck} é conhecido por fazer diagnóstico de \emph{badblocks} e recuperá-los 
+caso seja encontrado que estão corrompidos. Diferente do sistema de arquivos acima, o comando
+precisa ser executado manualmente pelo administrador do sistema, o que pode acarretar em um grande acumulo
+de erros no sistema de arquivos até o ponto de ser irrecuperável.
+
+\section*{\emph{Golang Diagnostics}}
+
+Um sistema de diagnóstico criado pela \emph{Google} dentro de sua língua de programação \emph{Go} chamado
+\href{https://go.dev/doc/diagnostics}{\emph{Diagnostics Go Dev}}. Consegue diagnosticar o uso da CPU, 
+o \emph{heap} da memória, a criação de \emph{threads} do sistema operacional, a criação de \emph{green threads}
+do \emph{go} chamada \emph{goroutines} e seus \emph{locks} e \emph{mutexes}.
+
+Esse conjunto de ferramentes são capazes de diagnosticar com precisão um sistema. Com o uso deles é possível
+evitar problemas no sistema em tempo real, tanto quanto gerar \emph{logs} detalhados sobre todos os eventos 
+que estão acontecendo nesse sistema.
+
+
+\section*{Caso queira referênciar este arquivo}
+
+Este documento está disponível sob a licença \href{https://choosealicense.com/licenses/mit/}{MIT} no repositório
+\href{https://github.com/Trees-Over-The-Lake/Computacao-Distribuida}{Computação Distribuída - Github}
