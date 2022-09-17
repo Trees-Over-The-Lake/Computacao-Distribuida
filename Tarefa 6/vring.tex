@@ -1,0 +1,290 @@
+\documentclass{article} 
+\usepackage{tikz}
+\usepackage[portuguese]{babel}
+
+\usetikzlibrary{automata,positioning,shapes.multipart}
+
+\title{Algoritmo de VRing com erro no node 3}
+\author{Lucas Santiago de Oliveira}
+\date{\today}
+
+\begin{document} 
+    \maketitle
+
+    Aqui estão os 7 processos. Nenhum deles tem conhecimento do funcionamento dos outros.
+    \vspace{1cm}
+
+    \begin{tikzpicture}[node distance={20mm}, thick, main/.style = {draw, circle}] 
+        \node[main] (1) {$x_1$};
+        \node[above left of=1, rectangle] (desc1) {
+            \begin{tabular}{|c|c|}
+                \hline
+                $x_2$ &  \\
+                \hline
+                $x_3$ &  \\
+                \hline
+                $x_4$ &  \\
+                \hline
+                $x_5$ &  \\
+                \hline
+                $x_6$ &  \\
+                \hline
+                $x_7$ &  \\
+                \hline
+            \end{tabular}
+        };
+        \node[main] (2) [above right of=1] {$x_2$};
+        \node[above of=2, rectangle] (desc2) {
+            \begin{tabular}{|c|c|}
+                \hline
+                $x_1$ &  \\
+                \hline
+                $x_3$ &  \\
+                \hline
+                $x_4$ &  \\
+                \hline
+                $x_5$ &  \\
+                \hline
+                $x_6$ &  \\
+                \hline
+                $x_7$ &  \\
+                \hline
+            \end{tabular}
+        };
+        \node[main] (3) [right of=2] {$x_3$}; 
+        \node[above of=3, rectangle] (desc3) {
+            \begin{tabular}{|c|c|}
+                \hline
+                $x_1$ &  \\
+                \hline
+                $x_2$ &  \\
+                \hline
+                $x_4$ &  \\
+                \hline
+                $x_5$ &  \\
+                \hline
+                $x_6$ &  \\
+                \hline
+                $x_7$ &  \\
+                \hline
+            \end{tabular}
+        };
+        \node[main] (4) [below right of=3] {$x_4$};
+        \node[right of=4, rectangle] (desc4) {
+            \begin{tabular}{|c|c|}
+                \hline
+                $x_1$ &  \\
+                \hline
+                $x_2$ &  \\
+                \hline
+                $x_3$ &  \\
+                \hline
+                $x_5$ &  \\
+                \hline
+                $x_6$ &  \\
+                \hline
+                $x_7$ &  \\
+                \hline
+            \end{tabular}
+        };
+        \node[main] (5) [below left of=4] {$x_5$}; 
+        \node[below of=5, rectangle] (desc5) {
+            \begin{tabular}{|c|c|}
+                \hline
+                $x_1$ &  \\
+                \hline
+                $x_2$ &  \\
+                \hline
+                $x_3$ &  \\
+                \hline
+                $x_4$ &  \\
+                \hline
+                $x_6$ &  \\
+                \hline
+                $x_7$ &  \\
+                \hline
+            \end{tabular}
+        };
+        \node[main] (6) [left of=5] {$x_6$};
+        \node[below of=6, rectangle] (desc6) {
+            \begin{tabular}{|c|c|}
+                \hline
+                $x_1$ &  \\
+                \hline
+                $x_2$ &  \\
+                \hline
+                $x_3$ &  \\
+                \hline
+                $x_4$ &  \\
+                \hline
+                $x_5$ &  \\
+                \hline
+                $x_7$ &  \\
+                \hline
+            \end{tabular}
+        };
+        \node[main] (7) [left of=6] {$x_7$};
+        \node[below of=7, rectangle] (desc7) {
+            \begin{tabular}{|c|c|}
+                \hline
+                $x_1$ &  \\
+                \hline
+                $x_2$ &  \\
+                \hline
+                $x_3$ &  \\
+                \hline
+                $x_4$ &  \\
+                \hline
+                $x_5$ &  \\
+                \hline
+                $x_6$ &  \\
+                \hline
+            \end{tabular}
+        };
+    \end{tikzpicture}
+
+    \vspace{1cm}
+    Aqui o processo 1 
+    \vspace{1cm}
+
+    \begin{tikzpicture}[node distance={20mm}, thick, main/.style = {draw, circle}] 
+        \node[main] (1) {$x_1$}; 
+        \node[main] (2) [above right of=1] {$x_2$};
+        \node[main] (3) [right of=2] {$x_3$}; 
+        \node[main] (4) [below right of=3] {$x_4$};
+        \node[main] (5) [below left of=4] {$x_5$}; 
+        \node[main] (6) [left of=5] {$x_6$};
+        \node[main] (7) [left of=6] {$x_7$};  
+    \end{tikzpicture} 
+\end{document}
+
+% Modelo de grafo 
+%
+% \begin{tikzpicture}[node distance={20mm}, thick, main/.style = {draw, circle}] 
+%     \node[main] (1) {$x_1$};
+%     \node[above left of=1, rectangle] (desc1) {
+%         \begin{tabular}{|c|c|}
+%             \hline
+%             $x_2$ &  \\
+%             \hline
+%             $x_3$ &  \\
+%             \hline
+%             $x_4$ &  \\
+%             \hline
+%             $x_5$ &  \\
+%             \hline
+%             $x_6$ &  \\
+%             \hline
+%             $x_7$ &  \\
+%             \hline
+%         \end{tabular}
+%     };
+%     \node[main] (2) [above right of=1] {$x_2$};
+%     \node[above of=2, rectangle] (desc2) {
+%         \begin{tabular}{|c|c|}
+%             \hline
+%             $x_1$ &  \\
+%             \hline
+%             $x_3$ &  \\
+%             \hline
+%             $x_4$ &  \\
+%             \hline
+%             $x_5$ &  \\
+%             \hline
+%             $x_6$ &  \\
+%             \hline
+%             $x_7$ &  \\
+%             \hline
+%         \end{tabular}
+%     };
+%     \node[main] (3) [right of=2] {$x_3$}; 
+%     \node[above of=3, rectangle] (desc3) {
+%         \begin{tabular}{|c|c|}
+%             \hline
+%             $x_1$ &  \\
+%             \hline
+%             $x_2$ &  \\
+%             \hline
+%             $x_4$ &  \\
+%             \hline
+%             $x_5$ &  \\
+%             \hline
+%             $x_6$ &  \\
+%             \hline
+%             $x_7$ &  \\
+%             \hline
+%         \end{tabular}
+%     };
+%     \node[main] (4) [below right of=3] {$x_4$};
+%     \node[right of=4, rectangle] (desc4) {
+%         \begin{tabular}{|c|c|}
+%             \hline
+%             $x_1$ &  \\
+%             \hline
+%             $x_2$ &  \\
+%             \hline
+%             $x_3$ &  \\
+%             \hline
+%             $x_5$ &  \\
+%             \hline
+%             $x_6$ &  \\
+%             \hline
+%             $x_7$ &  \\
+%             \hline
+%         \end{tabular}
+%     };
+%     \node[main] (5) [below left of=4] {$x_5$}; 
+%     \node[below of=5, rectangle] (desc5) {
+%         \begin{tabular}{|c|c|}
+%             \hline
+%             $x_1$ &  \\
+%             \hline
+%             $x_2$ &  \\
+%             \hline
+%             $x_3$ &  \\
+%             \hline
+%             $x_4$ &  \\
+%             \hline
+%             $x_6$ &  \\
+%             \hline
+%             $x_7$ &  \\
+%             \hline
+%         \end{tabular}
+%     };
+%     \node[main] (6) [left of=5] {$x_6$};
+%     \node[below of=6, rectangle] (desc6) {
+%         \begin{tabular}{|c|c|}
+%             \hline
+%             $x_1$ &  \\
+%             \hline
+%             $x_2$ &  \\
+%             \hline
+%             $x_3$ &  \\
+%             \hline
+%             $x_4$ &  \\
+%             \hline
+%             $x_5$ &  \\
+%             \hline
+%             $x_7$ &  \\
+%             \hline
+%         \end{tabular}
+%     };
+%     \node[main] (7) [left of=6] {$x_7$};
+%     \node[below of=7, rectangle] (desc7) {
+%         \begin{tabular}{|c|c|}
+%             \hline
+%             $x_1$ &  \\
+%             \hline
+%             $x_2$ &  \\
+%             \hline
+%             $x_3$ &  \\
+%             \hline
+%             $x_4$ &  \\
+%             \hline
+%             $x_5$ &  \\
+%             \hline
+%             $x_6$ &  \\
+%             \hline
+%         \end{tabular}
+%     };
+% \end{tikzpicture}
