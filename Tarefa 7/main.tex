@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage[portuguese]{babel}
+\usepackage{indentfirst}
+
+
+\title{Tarefa 7 - Relógios Lógicos e Físicos}
+\author{Lucas Santiago de Oliveira}
+\date{\today}
+
+\begin{document}
+    \maketitle
+
+    \section{Funcionamento de Relógios Lógicos}
+
+    Relógios lógicos são uma invenção da computação para sincronizar processos dentro de um sistema distribuído.
+    Em um sistema distribuído vários processos acontecem em simultaneidade, por conta disso, é necessário que
+    exista alguma forma de saber qual processo foi executado primeiro, para manter todo o sistema ordenado. 
+    No momento em que um processo novo é criado, um contador lógico também é iniciado para esse processo. 
+    Se esse precisar se comunicar com outro processo, o uso desse contador se torna imprecindível para manter
+    a comunicação entre processos sincronizada, sem que um processo envie uma mensagem $T_2$ antes da $T_1$,
+    ou seja, fora de ordem.
+
+    \section{Algoritmo de Cristian para Relógios}
+
+    O algoritmo de Cristian foi criado para sincronizar computadores a partir de um computador com relógio preciso.
+    Outros computadores ao consultarem esse computador preciso sofrem com um grande atraso da latência do envio e do
+    recebimento da mensagem na rede. O algoritmo de Cristian foi projetado para resolver esse problema ao somar
+    um pequeno valor de tempo à mensagem de envio para os computadores, prevendo que haverá algum atraso na rede.
+
+    Esse algoritmo foi projetado para funcionar em ambientes locais, pois em sistemas distantes pode ocorrer das 
+    mensagem sofrerem uma latência maior, devido à alteração de rota ou atraso de um dos roteadores na rede,
+    do que a esperada pelo algoritmo, com isso, recebendo um valor incorreto de tempo na máquina local.
+
+    \section{Ordenando os Processos}
+
+    Processo A: inst A1; send C; recv B; inst A2; send D; recv D; inst A3; 
+
+    Processo B: send A; inst B1; recv C; inst B2; recv D; 
+
+    Processo C: inst C1; inst C2; recb A; inst C3; send B; 
+    
+    Processo D: inst D1; recv A; send A; inst D2; send B
+
+    \subsection*{Ordem da execução dos processos:}
+
+    Início
+    
+    Execução 1: 
+    
+    Simultanemente: (Processo A $\rightarrow$ inst A1; Processo B $\rightarrow$ Entra em modo de espera por A;
+    Processo C $\rightarrow$ inst C1; Processo D $\rightarrow$ instD1;) 
+
+    Execução 2:
+
+    Simultanemente: (Processo A $\rightarrow$ envia mensagem para C; Processo B $\rightarrow$ ainda em espera de A;
+    Processo C $\rightarrow$  inst C2; Processo D $\rightarrow$ recebe mensagem de A)
+
+    Execução 3:
+
+    Simultanemente: (Processo A $\rightarrow$ recebe mensagem de B; Processo B $\rightarrow$  envia a mensagem
+    para A; Processo C $\rightarrow$ entra em espera para receber a mensagem para A; Processo D $\rightarrow$ 
+    entra em espera para enviar mensagem para A)
+
+    Execução 4:
+
+    Simultanemente: (Processo A $\rightarrow$ inst A2; Processo B $\rightarrow$ Entra em espra do processo C; 
+    Processo C $\rightarrow$ inst C3; Processo D $\rightarrow$ inst D2)
+
+    Execução 5:
+
+    Simultanemente: (Processo A $\rightarrow$ envia mensagem para D; Processo B $\rightarrow$ inst B2; 
+    Processo C $\rightarrow$ inst C3; Processo D $\rightarrow$ inst D2)
+
+    Fim
+
+\end{document}
