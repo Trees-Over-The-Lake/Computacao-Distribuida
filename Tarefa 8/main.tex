@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage[portuguese]{babel}
+\usepackage{indentfirst}
+
+\title{Tarefa 8}
+\author{Lucas Santiago de Oliveira}
+\date{7 de outubro de 2022}
+
+\begin{document}
+    \maketitle
+
+    \section*{Perguntas}
+    \begin{enumerate}
+        \item Um determinado sistema distribuído pode não ser justo, permitindo que um processo use uma seção crítica 
+        muitas vezes, antes de outro processo. Como os algoritmos de exclusão mútua de Lamport e de Ricart e Agrawala 
+        se comportam, cada um, em relação a essa situação? Por que? 
+        \item Faça uma resenha do artigo: Maekawa, “A $\sqrt{N}$ Algorithm for Mutual Exclusion in in Decentralized Systems”, 
+        ACM Trans. on Computer Systems, Vol. 3, No. 2, 1995..
+    \end{enumerate}
+
+    \section*{Minhas Respostas}
+    \begin{enumerate}
+        \item A forma escolhida por Lamport para solucionar o problema de \emph{fairness} em sistemas distribuídos
+        se baseia em organizar todas as requisições em uma fila perfeita. Para que essa fila esteja ordenada, todo
+        novo processo que faz uma requisição adiciona seu próprio \emph{timestamp} de criação e os envia para todos 
+        os nós. Com essa data de criação adicionada fica fácil de ordenar a fila por ordem de chegada. Com a fila 
+        ordenada, sempre que a sessão crítica estiver disponível o próximo processo da fila pode entrar nela.
+
+        Ricart e Agrawala prepararam uma melhoria do algoritmo de Lamport. Não sendo mais necessário um canal perfeito
+        de fila. Uma vez que precisa da aprovação de todos os processos para acessar a área crítica. Isso só ocorre 
+        no momento em que não há mais nenhum processo em região crítica e, além disso, é o próximo à entrar na região 
+        crítica para todos os processos.
+        
+        \item A ideia de Maekawa era de dividir os computadores na rede em quorums. Com isso, era possível que um quorum 
+        tivesse apenas um computador para decidir se o outro quorum poderia entrar na região crítica. Assim, não era necessário
+        obter a resposta de todos os nós da rede. Apenas um nó do quorum tinha permissão suficiente para aprovar outro quorum.
+        Essa abordagem é $\sqrt{N}$, pois um quorum só mandava mensagem para um computador em todos os outros quorums, não
+        necessitando de resposta de todos os nós.
+    \end{enumerate}
+
+\end{document}
